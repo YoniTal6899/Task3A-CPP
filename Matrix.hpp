@@ -14,28 +14,33 @@ namespace zich
         int rows;
         int cols;
         double sum() const;
-        double mul(const int raw, const int col, const Matrix &a);
+        double mul(const int row, const int col, const Matrix &a);
     public:
         Matrix(vector<double> nums, int n, int m);
-        Matrix operator+(const Matrix &a);
-        Matrix operator++(const int n);
-        Matrix operator+=(const Matrix &a);
-        Matrix operator-(const Matrix &a);
-        Matrix operator--(const int n);
-        Matrix operator-=(const Matrix &a);
-        bool operator>(const Matrix &a);
-        bool operator<(const Matrix &a);
-        bool operator==(const Matrix &a);
-        bool operator!=(const Matrix &a);        
-        bool operator>=(const Matrix &a);
-        bool operator<=(const Matrix &a);
-        void operator++();
-        void operator--();
-        Matrix operator*(const double a);
-        Matrix operator*(const Matrix &a);
-        ostream &operator<<(ostream &os, const Matrix &a);
-        istream &operator>>(istream &os, Matrix &mat);
-        Matrix operator-(Matrix &a);
+
+        friend Matrix operator+(const Matrix &a,const Matrix &b);
+        friend Matrix operator+=(const Matrix &a,const Matrix &b);
+        friend Matrix operator+(const Matrix &a);
+        friend Matrix operator-(const Matrix &a,const Matrix &b);
+        friend Matrix operator-=(const Matrix &a,const Matrix &b);
+        friend Matrix operator-(const Matrix &a);
+        friend bool operator>(const Matrix &a,const Matrix &b);
+        friend bool operator<(const Matrix &a,const Matrix &b);
+        friend bool operator==(const Matrix &a,const Matrix &b);
+        friend bool operator!=(const Matrix &a,const Matrix &b);        
+        friend bool operator>=(const Matrix &a,const Matrix &b);
+        friend bool operator<=(const Matrix &a,const Matrix &b);
+        friend Matrix operator++(const Matrix &a);//suffix
+        friend Matrix operator--(const Matrix &a);//suffix
+        friend Matrix& operator++(const Matrix &a,const int b);//prefix
+        friend Matrix& operator--(const Matrix &a,const int b);//prefix
+        friend Matrix operator*(const Matrix &a,const double n);
+        friend Matrix operator*(const double n,const Matrix &a);
+        friend Matrix operator*(const Matrix &a,const Matrix &b);
+        friend Matrix operator*=(const Matrix &a,const double n);
+        friend Matrix operator*=(const Matrix &a,const Matrix &b);
+        friend ostream& operator<<(ostream &os, const Matrix &a);
+        friend istream& operator>>(istream &os, Matrix &a);
     };
 
 };

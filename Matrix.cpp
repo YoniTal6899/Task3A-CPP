@@ -2,231 +2,112 @@
 
 namespace zich
 {
-    Matrix::Matrix(const vector<double> nums, const int n, const int m)
+    Matrix::Matrix(vector<double> nums, int n, int m)
     {
-        if (n <= 0 || m <= 0){__throw_invalid_argument("Enter positive args");}
-        this->data = nums;
-        this->rows = n;
-        this->cols = m;
+            this->data = nums;
+            this->rows = n;
+            this->cols = m;
     }
-    Matrix Matrix::operator+(const Matrix &a)
-    {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}        
-        size_t len = (size_t )(this->rows * this->cols);
-        vector<double> DATA;
-        DATA.resize(len);
-        for (size_t  i = 0; i < len; i++)
-        {
-            DATA[i] = this->data[i] + a.data[i];
-            
-        }
-        return Matrix(DATA, this->rows , this->cols);
-    }
-    Matrix Matrix::operator++(const int n)
-    {
-        Matrix ans=*this;
-        for (size_t i = 0; i < this->rows; i++)
-        {
-            for (size_t j = 0; j < this->cols; j++)
-            {
-                data[(size_t)(i * (size_t)this->cols + j)] += 1;
-            }
-        }
-        return ans;
-    }
-    Matrix Matrix::operator+=(const Matrix &a)
-    {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");} 
-        for(size_t i=0; i<this->rows; i++)
-        {
-            for(size_t j=0; j<this->cols;j++)
-            {
-                this->data[(size_t)(i * (size_t)this->cols + j)]+=a.data[(size_t)(i * (size_t)this->cols + j)];
-            }
-        }
-        return *this;
-    }
-    Matrix Matrix::operator-(const Matrix &a)
-    {
-       if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}        
-        size_t len = (size_t )(this->rows * this->cols);
-        vector<double> DATA;
-        DATA.resize(len);
-        for (size_t  i = 0; i < len; i++)
-        {
-            DATA[i] = this->data[i] - a.data[i];
-            
-        }
-        return Matrix(DATA, this->rows , this->cols);
-    }
-    Matrix Matrix::operator--(const int n)
-    {
-        Matrix ans=*this;
-        for (size_t i = 0; i < this->rows; i++)
-        {
-            for (size_t j = 0; j < this->cols; j++)
-            {
-                data[(size_t)(i * (size_t)this->cols + j)] -= 1;
-            }
-        }
-        return ans;
-    }
-    Matrix Matrix::operator-=(const Matrix &a)
-    {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");} 
-        for(size_t i=0; i<this->rows; i++)
-        {
-            for(size_t j=0; j<this->cols;j++)
-            {
-                this->data[(size_t)(i * (size_t)this->cols + j)]-=a.data[(size_t)(i * (size_t)this->cols + j)];
-            }
-        }
-        return *this;
-    }
+    std::vector<double> example = {0, 0, 0, 0};
+    Matrix example_mat(example, 2, 2);
     double Matrix::sum() const
     {
-        double sum = 0;
-        for (int i = 0; i < this->rows; i++)
-        {
-            for (int j = 0; j < this->cols; j++)
-            {
-                sum += data[(size_t)(i * (this->cols) + j)];
-            }
-        }
-        return sum;
+        return 0;
     }
-    bool Matrix::operator>(const Matrix &a)
+    double Matrix::mul(const int row, const int col, const Matrix &a)
     {
-        if((double)this->sum()>(double)a.sum()){return true;}
-        return false;
+        return 0;
     }
-    bool Matrix::operator<(const Matrix &a)
+    Matrix operator+(const Matrix &a,const Matrix &b)
     {
-        if((double)this->sum()<(double)a.sum()){return true;}
-        return false;
+        return example_mat;
     }
-    bool Matrix::operator==(const Matrix &a)
+    Matrix operator+=(const Matrix &a,const Matrix &b)
     {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                if(this->data[(size_t)(i * (size_t)(this->cols) + j)]!=a.data[(size_t)(i * (size_t)(this->cols) + j)]){return false;}
-            }
-        }
-        return true;    
+        return example_mat;
+    }    
+    Matrix operator+(const Matrix &a)
+    {
+        return example_mat;
     }
-    bool Matrix::operator!=(const Matrix &a)
+    Matrix operator-(const Matrix &a,const Matrix &b)
     {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                if(this->data[(size_t)(i * (size_t)(this->cols) + j)]!=a.data[(size_t)(i * (size_t)(this->cols) + j)]){return true;}
-            }
-        }
-        return false; 
+        return example_mat;
+    }    
+    Matrix operator-=(const Matrix &a,const Matrix &b)
+    {
+        return example_mat;
+    }    
+    Matrix operator-(const Matrix &a)
+    {
+        return example_mat;
     }
-    bool Matrix::operator>=(const Matrix &a)
+    bool operator>(const Matrix &a,const Matrix &b)
     {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                if(this->data[(size_t)(i * (size_t)(this->cols) + j)]<=a.data[(size_t)(i * (size_t)(this->cols) + j)]){return false;}
-            }
-        }
-        return true;    
+        return true;
+    }    
+    bool operator<(const Matrix &a,const Matrix &b)
+    {
+        return true;
+    }    
+    bool operator==(const Matrix &a,const Matrix &b)
+    {
+        return true;
+    }    
+    bool operator!=(const Matrix &a,const Matrix &b)
+    {
+        return true;
+    }    
+    bool operator>=(const Matrix &a,const Matrix &b)
+    {
+        return true;
+    }    
+    bool operator<=(const Matrix &a,const Matrix &b)
+    {
+        return true;
     }
-    bool Matrix::operator<=(const Matrix &a)
+    Matrix operator++(const Matrix &a) //suffix
     {
-        if (this->rows != a.rows || this->cols != a.cols){__throw_runtime_error("Sizes aren't equal!");}
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                if(this->data[(size_t)(i * (size_t)(this->cols) + j)]>a.data[(size_t)(i * (size_t)(this->cols) + j)]){return false;}
-            }
-        }
-        return true;    
+        return example_mat;
+    }    
+    Matrix operator--(const Matrix &a) //suffix
+    {
+        return example_mat;
     }
-    void Matrix::operator++()
+    Matrix& operator++(const Matrix &a,const int b) //prefix
     {
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                this->data[(size_t)(i * (size_t)(this->cols) + j)]++;
-            }
-        }
+        return example_mat;
+    }    
+    Matrix& operator--(const Matrix &a,const int b) //prefix
+    {
+        return example_mat;
     }
-    void Matrix::operator--()
+    Matrix operator*(const Matrix &a,const double n)
     {
-        for(size_t i=0;i<this->rows;i++)
-        {
-            for(size_t j =0;j<this->cols;j++)
-            {
-                this->data[(size_t)(i * (size_t)(this->cols) + j)]--;
-            }
-        }
-    }
-    Matrix Matrix::operator*(const double a)
+        return example_mat;
+    }    
+    Matrix operator*(const double n,const Matrix &a)
     {
-        Matrix ans = *this;
-        for (size_t i = 0; i < this->rows; i++)
-        {
-            for (size_t j = 0; j < this->cols; j++)
-            {
-                ans.data[(size_t)(i * (size_t)(this->cols) + j)] *= a;
-            }
-        }
-        return ans;
-    }
-    double Matrix::mul(const int r, const int c, const Matrix &a)
+        return example_mat;
+    }    
+    Matrix operator*(const Matrix &a,const Matrix &b)
     {
-        double sum = 0;
-        for (int i = 0; i < this->cols; i++)
-        {
-            sum += a.data[(size_t)(a.cols * i + c)]*this->data[(size_t)(this->cols * r + i)];
-        }
-        return sum;
-    }
-    Matrix Matrix::operator*(const Matrix &a)
+        return example_mat;
+    }    
+    Matrix operator*=(const Matrix &a,const double n)
     {
-        if (this->cols != a.rows){__throw_runtime_error("Sizes aren't equal!");}
-        vector<double> n;
-        Matrix ans(n, this->rows, a.cols);
-        for (int i = 0; i < ans.rows; i++)
-        {
-            for (int j = 0; j < ans.cols; j++)
-            {
-                ans.data[(size_t)(i * ans.cols + j)] = mul(i, j,a);
-            }
-        }
-        return ans;
-    }
-    ostream &operator<<(ostream &o, const Matrix &a)
+        return example_mat;
+    }    
+    Matrix operator*=(const Matrix &a,const Matrix &b)
     {
-        for (int i = 0; i < a.rows; i++)
-        {
-            o << '[';
-            for (int j = 0; j < a.cols; j++)
-            {
-                o << a.data[(size_t)(a.cols * i + j)] << " ";
-            }
-            o << "]" << endl;
-        }
-        return o;
-    }
-    istream &operator>>(istream &o, Matrix &mat)
+        return example_mat;
+    }    
+    ostream& operator<<(ostream& os, const Matrix &a)
     {
-        return o;
-    }
-    Matrix Matrix::operator-(Matrix &a)
+        return os;
+    }    
+    istream& operator>>(istream& is, Matrix &a)
     {
-        return a *= -1;
+        return is;
     }
 }
